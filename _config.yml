@@ -1,96 +1,69 @@
-# WhatATheme
-markdown: kramdown
-
-# URL of the Site
-url: ''
-# Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
-baseurl: 
-
-# Title of the Site
-title: Nathan
-# Description of the Site
-description: A customizable Jekyll portfolio theme
-# URL of Image of the Site
-site-image: assets/images/meta.jpg
-# Keywords of the Site
-site-keywords: Site, Template, Theme
-# URL for the Image of custom Favicon
-favicon-url: 
-
-# URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
-heroimage: https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
-
-# Social Media and Contact
-# If you don't want to use any icon, you can leave them blank.
-email: 
-facebook_username: 
-twitter_username: 
-instagram_username: 
-linkedin_username: 
-github_username:  
-youtube_channel_id: 
-reddit_username: /
-behance_username: /
-dribbble_username: /
-spotify_username: /
-
-# Google Analytics
-google-analytics: 
-
-# Disqus
-disqus-shortname: 
-
-# Name of the Author
-author-name: TheDevsLot
-# URL for the Image of the Author
-author-image: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png
-# 60 Words About the Author
-# URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
-author-url: https://github.com/Amanatil
-
-# SASS
-sass:
-  sass_dir: _sass
-  style: compressed
+# Site settings
+title: Nathan van den Berg - Game Designer Portfolio
+email: your.email@example.com
+description: >-
+  A portfolio showcasing my game design projects, interactive experiences,
+  and creative journey in the gaming industry.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://amanatil.github.io" # the base hostname & protocol for your site
+twitter_username: yourusername
+github_username: yourusername
+linkedin_username: yourusername
 
 # Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
 plugins:
-  - jekyll-admin
   - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
-# Permalink
-permalink: "blog/:title"
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+  games:
+    output: true
+    permalink: /games/:name/
 
-# Compress
-compress_html:
-  clippings: all
-
+include:
+  - _pages
+  
 # Defaults
 defaults:
-  -
-    scope:
-      type: 'posts'
+  - scope:
+      path: ""
+      type: "projects"
     values:
-      layout: post
-      post-image: ""
-      description: ""
-      tags:
-        - ""
-  -
-    scope:
-      type: 'pages'
+      layout: "project"
+  - scope:
+      path: ""
+      type: "games"
     values:
-      layout: page
+      layout: "game"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
 
-# Exclude
+# Exclude from processing
 exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
   - Gemfile
   - Gemfile.lock
-  - node_modules/
+  - node_modules
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - src/
+
+# Tailwind CSS
+sass:
+  sass_dir: _sass
+  style: compressed

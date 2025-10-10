@@ -1,0 +1,137 @@
+---
+layout: default
+---
+
+<div class="container mx-auto px-4 py-16">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {{ page.title }}
+        </h1>
+        {% if page.subtitle %}
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                {{ page.subtitle }}
+            </p>
+        {% endif %}
+    </header>
+
+    <div class="mb-8">
+        <div class="flex flex-wrap gap-4 justify-center">
+            <button class="filter-btn active" data-filter="all">All Games</button>
+            <button class="filter-btn" data-filter="released">Released</button>
+            <button class="filter-btn" data-filter="development">In Development</button>
+            <button class="filter-btn" data-filter="prototype">Prototypes</button>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="games-grid">
+        {% for game in site.games %}
+            <div class="game-item game-card" data-status="{{ game.status | downcase | replace: ' ', '-' }}">
+                <a href="{{ game.url | relative_url }}" class="block relative">
+                {% if game.featured_image %}
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-t-xl overflow-hidden">
+                        <img src="{{ game.featured_image | relative_url }}" alt="{{ game.title }}" class="w-full h-full object-cover">
+                    </div>
+                {% endif %}
+                <div class="game-card-overlay"></div>
+                <div class="p-6 relative z-10">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ game.title }}</h3>
+                        {% if game.status %}
+                            <span class="px-2 py-1 text-xs rounded-full 
+                                {% if game.status == 'Released' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
+                                {% elsif game.status == 'In Development' %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
+                                {% elsif game.status == 'Prototype' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200
+                                {% else %}bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200{% endif %}">
+                                {{ game.status }}
+                            </span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if game.genre %}
+                        <p class="text-game-primary font-medium mb-2">{{ game.genre }}</p>
+                    {% endif %}
+                    
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">{{ game.excerpt | strip_html | truncate: 120 }}</p>
+                    
+                    {% if game.platform %}
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                            <strong>Platform:</strong> {{ game.platform }}
+                        </p>
+                    {% endif %}
+                    
+                    {% if game.role %}
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <strong>Role:</strong> {{ game.role }}
+                        </p>
+                    {% endif %}
+                    
+                    {% if game.technologies %}
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {% for tech in game.technologies limit: 3 %}
+                                <span class="px-2 py-1 bg-game-secondary/10 text-game-secondary rounded text-xs">{{ tech }}</span>
+                            {% endfor %}
+                            {% if game.technologies.size > 3 %}
+                                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded text-xs">+{{ game.technologies.size | minus: 3 }} more</span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="flex items-center justify-between">
+                        <a href="{{ game.url | relative_url }}" class="text-game-primary hover:text-game-secondary font-medium">
+                            Learn More →
+                        </a>
+                        {% if game.links %}
+                            <div class="flex gap-2">
+                                {% for link in game.links limit: 2 %}
+                                    <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-500 hover:text-game-primary">
+                                        {{ link.title }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+// Game filtering functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gameItems = document.querySelectorAll('.game-item');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.dataset.filter;
+            
+            // Filter games
+            gameItems.forEach(item => {
+                if (filter === 'all' || (filter === 'released' && item.dataset.status === 'released') || 
+                    (filter === 'development' && item.dataset.status === 'in-development') ||
+                    (filter === 'prototype' && item.dataset.status === 'prototype')) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+
+<style>
+.filter-btn {
+    @apply px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-game-primary hover:text-game-primary transition-colors;
+}
+
+.filter-btn.active {
+    @apply bg-game-primary text-white border-game-primary;
+}
+</style>

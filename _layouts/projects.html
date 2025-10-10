@@ -1,0 +1,107 @@
+---
+layout: default
+---
+
+<div class="container mx-auto px-4 py-16">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {{ page.title }}
+        </h1>
+        {% if page.subtitle %}
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                {{ page.subtitle }}
+            </p>
+        {% endif %}
+    </header>
+
+    <div class="mb-8">
+        <div class="flex flex-wrap gap-4 justify-center">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="game-design">Game Design</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="prototype">Prototypes</button>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+        {% for project in site.projects %}
+            <div class="project-item game-card" data-categories="{{ project.categories | join: ' ' }}">
+                <a href="{{ project.url | relative_url }}">
+                {% if project.featured_image %}
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-t-xl overflow-hidden">
+                        <img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+                    </div>
+                {% endif %}
+                <div class="game-card-overlay"></div>
+                <div class="p-6 relative z-10">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ project.title }}</h3>
+                    {% if project.subtitle %}
+                        <p class="text-game-primary font-medium mb-2">{{ project.subtitle }}</p>
+                    {% endif %}
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">{{ project.excerpt | strip_html | truncate: 120 }}</p>
+                    
+                    {% if project.technologies %}
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {% for tech in project.technologies limit: 4 %}
+                                <span class="px-2 py-1 bg-game-primary/10 text-game-primary rounded text-xs">{{ tech }}</span>
+                            {% endfor %}
+                            {% if project.technologies.size > 4 %}
+                                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded text-xs">+{{ project.technologies.size | minus: 4 }} more</span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="flex items-center justify-between">
+                        <a href="{{ project.url | relative_url }}" class="text-game-primary hover:text-game-secondary font-medium">
+                            View Project →
+                        </a>
+                        {% if project.featured %}
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 rounded-full text-xs font-medium">
+                                Featured
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+// Project filtering functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.dataset.filter;
+            
+            // Filter projects
+            projectItems.forEach(item => {
+                if (filter === 'all' || item.dataset.categories.includes(filter)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+
+<style>
+.filter-btn {
+    @apply px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-game-primary hover:text-game-primary transition-colors;
+}
+
+.filter-btn.active {
+    @apply bg-game-primary text-white border-game-primary;
+}
+</style>
