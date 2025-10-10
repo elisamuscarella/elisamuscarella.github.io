@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-body text-gray-800 dark:text-gray-200;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm transition-all duration-200 ease-in-out;
+  }
+  
+  .btn-primary {
+    @apply bg-game-primary text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-game-primary;
+  }
+  
+  .btn-secondary {
+    @apply bg-game-secondary text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-game-secondary;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-game-primary text-game-primary hover:bg-game-primary hover:text-white;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105;
+  }
+  
+  .game-card {
+    @apply card relative block cursor-pointer;
+  }
+  
+  .game-card:hover .game-card-overlay {
+    opacity: 1;
+  }
+  
+  .game-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-game-primary to-game-secondary bg-clip-text text-transparent;
+  }
+  
+  .hero-gradient {
+    @apply bg-gradient-to-br from-game-dark via-gray-900 to-game-primary;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-game-primary to-game-secondary bg-clip-text text-transparent;
+  }
+}

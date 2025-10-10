@@ -1,0 +1,181 @@
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-game-primary rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+        <div class="absolute top-40 right-20 w-72 h-72 bg-game-secondary rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/2 w-72 h-72 bg-game-accent rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 4s;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6">
+            Nathan van den Berg
+            <span class="block text-gradient">Game Designer</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            Crafting immersive experiences and interactive worlds that captivate players and push the boundaries of what's possible in gaming.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary text-lg px-8 py-4">
+                View My Work
+            </a>
+            <a href="{{ '/contact/' | relative_url }}" class="btn btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-gray-900">
+                Get In Touch
+            </a>
+        </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <h2 class="section-heading">Featured Projects</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% assign featured_projects = site.projects | where: "featured", true | limit: 6 %}
+            {% for project in featured_projects %}
+                <div class="game-card">
+                    {% if project.featured_image %}
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-t-xl overflow-hidden">
+                            <img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}" class="w-full h-full object-cover">
+                        </div>
+                    {% endif %}
+                    <div class="game-card-overlay"></div>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ project.title }}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">{{ project.excerpt | strip_html | truncate: 100 }}</p>
+                        {% if project.technologies %}
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {% for tech in project.technologies limit: 3 %}
+                                    <span class="px-2 py-1 bg-game-primary/10 text-game-primary rounded text-xs">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <a href="{{ project.url | relative_url }}" class="text-game-primary hover:text-game-secondary font-medium">
+                            Learn More →
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <h2 class="section-heading">Skills & Expertise</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-game-primary to-game-secondary rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Game Design</h3>
+                <p class="text-gray-600 dark:text-gray-300">Mechanics, systems, and player experience design</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-game-secondary to-game-accent rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 3v14a1 1 0 001 1h8a1 1 0 001-1V7M9 7h6M9 11h6m-6 4h6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Prototyping</h3>
+                <p class="text-gray-600 dark:text-gray-300">Rapid iteration and concept validation</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-game-accent to-game-primary rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Team Leadership</h3>
+                <p class="text-gray-600 dark:text-gray-300">Cross-functional collaboration and project management</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-game-primary to-game-accent rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Analytics</h3>
+                <p class="text-gray-600 dark:text-gray-300">Data-driven design and player behavior analysis</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Games Section -->
+<section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <h2 class="section-heading">Latest Games</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% assign latest_games = site.games | sort: 'date' | reverse | limit: 3 %}
+            {% for game in latest_games %}
+                <div class="game-card">
+                    {% if game.featured_image %}
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-t-xl overflow-hidden">
+                            <img src="{{ game.featured_image | relative_url }}" alt="{{ game.title }}" class="w-full h-full object-cover">
+                        </div>
+                    {% endif %}
+                    <div class="game-card-overlay"></div>
+                    <div class="p-6 relative z-10">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ game.title }}</h3>
+                            {% if game.status %}
+                                <span class="px-2 py-1 text-xs rounded-full {% if game.status == 'Released' %}bg-green-100 text-green-800{% elsif game.status == 'In Development' %}bg-blue-100 text-blue-800{% else %}bg-gray-100 text-gray-800{% endif %}">
+                                    {{ game.status }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">{{ game.excerpt | strip_html | truncate: 100 }}</p>
+                        {% if game.genre %}
+                            <p class="text-sm text-game-primary mb-4">{{ game.genre }}</p>
+                        {% endif %}
+                        <a href="{{ game.url | relative_url }}" class="text-game-primary hover:text-game-secondary font-medium">
+                            Learn More →
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{{ '/games/' | relative_url }}" class="btn btn-secondary">View All Games</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-20 bg-gradient-to-r from-game-primary to-game-secondary">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Let's Create Something Amazing</h2>
+        <p class="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
+            Ready to bring your game ideas to life? I'm always excited to work on new projects and collaborate with passionate teams.
+        </p>
+        <a href="{{ '/contact/' | relative_url }}" class="btn bg-white text-game-primary hover:bg-gray-100 text-lg px-8 py-4">
+            Start a Conversation
+        </a>
+    </div>
+</section>

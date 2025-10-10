@@ -1,0 +1,121 @@
+---
+layout: default
+---
+
+<div class="container mx-auto px-4 py-8">
+    <article class="max-w-4xl mx-auto">
+        <header class="mb-8">
+            <nav class="text-sm mb-4">
+                <a href="{{ '/' | relative_url }}" class="text-game-primary hover:text-game-secondary">Home</a>
+                <span class="mx-2 text-gray-400">/</span>
+                <a href="{{ '/games/' | relative_url }}" class="text-game-primary hover:text-game-secondary">Games</a>
+                <span class="mx-2 text-gray-400">/</span>
+                <span class="text-gray-600 dark:text-gray-300">{{ page.title }}</span>
+            </nav>
+            
+            <h1 class="text-4xl md:text-6xl font-bold text-gradient mb-6">{{ page.title }}</h1>
+            
+            {% if page.subtitle %}
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">{{ page.subtitle }}</p>
+            {% endif %}
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    {% if page.genre %}
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Genre</h3>
+                            <p class="text-lg">{{ page.genre }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% if page.platform %}
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Platform</h3>
+                            <p class="text-lg">{{ page.platform }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% if page.role %}
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Role</h3>
+                            <p class="text-lg">{{ page.role }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div>
+                    {% if page.team_size %}
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Team Size</h3>
+                            <p class="text-lg">{{ page.team_size }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% if page.development_time %}
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Development Time</h3>
+                            <p class="text-lg">{{ page.development_time }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    {% if page.status %}
+                        <div class="mb-4">
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Status</h3>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                                {% if page.status == 'Released' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
+                                {% elsif page.status == 'In Development' %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
+                                {% elsif page.status == 'Prototype' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200
+                                {% else %}bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200{% endif %}">
+                                {{ page.status }}
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if page.technologies %}
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tech in page.technologies %}
+                            <span class="px-3 py-1 bg-game-primary/10 text-game-primary rounded-full text-sm font-medium">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            
+            {% if page.links %}
+                <div class="flex flex-wrap gap-4 mb-8">
+                    {% for link in page.links %}
+                        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            {{ link.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if page.featured_image %}
+                <div class="mb-8">
+                    <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title }}" class="w-full rounded-xl shadow-2xl">
+                </div>
+            {% endif %}
+        </header>
+        
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+            {{ content }}
+        </div>
+        
+        {% if page.screenshots %}
+            <section class="mt-12">
+                <h2 class="text-2xl font-bold mb-6">Screenshots</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {% for screenshot in page.screenshots %}
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden group">
+                            <img src="{{ screenshot.url | relative_url }}" alt="{{ screenshot.caption }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+    </article>
+</div>
