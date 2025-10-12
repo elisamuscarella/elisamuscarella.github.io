@@ -1,0 +1,22 @@
+{
+  "name": "game-designer-portfolio",
+  "version": "1.0.0",
+  "description": "A Jekyll portfolio website for a game designer with Tailwind CSS",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/styles.css -o ./assets/css/main.css --watch",
+    "build-css-prod": "tailwindcss -i ./src/styles.css -o ./assets/css/main.css --minify",
+    "serve": "bundle exec jekyll serve --livereload",
+    "build": "JEKYLL_ENV=production bundle exec jekyll build",
+    "clean": "bundle exec jekyll clean",
+    "docker:up": "docker-compose up",
+    "docker:up-build": "docker-compose up --build",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:shell": "docker-compose exec jekyll sh",
+    "docker:clean": "docker-compose down -v && docker system prune -f"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^3.3.0"
+  }
+}

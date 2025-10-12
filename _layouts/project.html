@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+<div class="container mx-auto px-4 py-8">
+    <article class="max-w-4xl mx-auto">
+        <header class="mb-8">
+            <nav class="text-sm mb-4">
+                <a href="{{ '/' | relative_url }}" class="text-game-primary hover:text-game-secondary">Home</a>
+                <span class="mx-2 text-gray-400">/</span>
+                <a href="{{ '/projects/' | relative_url }}" class="text-game-primary hover:text-game-secondary">Projects</a>
+                <span class="mx-2 text-gray-400">/</span>
+                <span class="text-gray-600 dark:text-gray-300">{{ page.title }}</span>
+            </nav>
+            
+            <h1 class="text-4xl md:text-6xl font-bold text-gradient mb-6">{{ page.title }}</h1>
+            
+            {% if page.subtitle %}
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">{{ page.subtitle }}</p>
+            {% endif %}
+            
+            <div class="flex flex-wrap gap-4 mb-6">
+                {% if page.technologies %}
+                    {% for tech in page.technologies %}
+                        <span class="px-3 py-1 bg-game-primary/10 text-game-primary rounded-full text-sm font-medium">{{ tech }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            
+            {% if page.links %}
+                <div class="flex flex-wrap gap-4 mb-8">
+                    {% for link in page.links %}
+                        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            {{ link.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if page.featured_image %}
+                <div class="mb-8">
+                    <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title }}" class="w-full rounded-xl shadow-2xl">
+                </div>
+            {% endif %}
+        </header>
+        
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+            {{ content }}
+        </div>
+        
+        {% if page.gallery %}
+            <section class="mt-12">
+                <h2 class="text-2xl font-bold mb-6">Gallery</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for image in page.gallery %}
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
+                            <img src="{{ image.url | relative_url }}" alt="{{ image.caption }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+    </article>
+</div>
