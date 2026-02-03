@@ -1,71 +1,39 @@
 ---
-title: Sample Post
+title: Snake Game
 layout: post
-post-image: "https://raw.githubusercontent.com/thedevslot/WhatATheme/master/assets/images/SamplePost.png?token=AHMQUEPC4IFADOF5VG4QVN26Z64GG"
-description: A sample post to show how the content will look and how will different
-  headlines, quotes and codes will be represented.
+post-image: /assets/images/snake_pygame.png
+image_fit: contain
+description: A guided snake game tutorial in Python.
 tags:
-- sample
-- post
-- test
+- Python
+- Tutorial
 ---
 
-This post will show you how the content will look like in the post pages and how the headlines, quotes and quotes will be represented. Jekyll is mainly used to write simple markdown and after that it renders out a static pages, so you need to know the basics of writing markdown for that.
-For more information about writing markdown you can checkout the following markdown cheatsheets:
-* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-* [Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
-* [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
 
----
+In this exercise, we will make a very simple snake game. The aim in this exercise is to get a bit more used to loops, lists and conditionals.
 
-# This is the h1 text
-## This is the h2 text
-### This is the h3 text
-#### This is the h4 text
-##### This is the h5 text
-###### This is the h6 text
+I have already prepared the “skeleton” of the game using a library called **pygame**, and also made some boring technical things ready for you such as reading the keyboard and game window settings. 
 
-**Bold Text in the post will look like:**<br>
-**This text is Bold**
+You will have 3 files but **you will be interested in only one** in this exercise. I will still give a short description about what each file does for those who are *overly interested.*
 
-**Italic Text in the post will look like:**<br>
-*This text is Italic*
+1. run_the_game.py: This file contains the necessary code to open a game window, update the window etc.
+2. snake.py: This is a *class* to create the snake and the fruits in the game. Everything appears on the screen are defined here originally. Whenever you write “snake.*SOMETHING*”, it actually reaches the variables/methods in this class. Since we haven’t covered the classes during the lecture, you can think about this file as a *meta-data* and completely ignore its existence. 
+3. **game_play.py:** This is the ONLY file that we will be editing today. We will program how to make the snake walk, eat as well as spawning the fruits when they are eaten. We will also program how the game ends if the snake hits the walls or itself if we have enough time.
 
-> Quotes on your post will look like this
+## How to run:
 
-`Codes on your post will look like this`
+The code that you have already will start the *game engine* without any snakes, fruits and nothing has implemented in terms of the game play. To start it, just run the script called **run_the_game.py**. You will always be running this script even if you are editing the script called game_play.py.
 
-**Link in the post will look like:**<br>
-[This is a link](#)
+## Steps:
 
-**Bullet list in the post will look like:**
-* Item 1
-* Item 2
-* Item 3
-* Item 4
-* Item 5
+1. Spawn a “snake” on the window. Your snake will be a cute pixel in the beginning. The pixel will have [x, y] coordinates. We will define it as “snake.body”.
+2. Make the “pixel” (a.k.a your snake) move as you press WASD keys.
+3. Spawn another random “pixel” in the window, and this will be your fruit/food. Be careful, you don’t want to spawn a lot of them. Just spawn when there is no other fruit. We will define it as “snake.fruit”.
+4. Time to eat the fruit. If the head of the snake is on the fruit, you will “eat” it. Don’t forget to set snake.isfruit to False when you eat it. You can update the score by using “snake.score”.
+5. 🌶️ If you eat a fruit, you will grow. Now our snake will have not only one but two pixels! snake.body was [x, y] but now it will be [[x1, y1], [x2, y2]]. Each time you eat a new fruit, you will add one more pixel to the body.
+    1. This will affect the move_with_keys() function. Now we will be moving *all* the pixels of the snake.body, rather than the *head* pixel.
+6. Make your snake move constantly. If you modify the move_with_keys() function such that you keep the last pressed *even if there is no key pressed*, your snake will keep moving!
+7. Game over scenario. If your snake’s head is the same as your window walls, or any pixel that the snake has then it is game over.
+    1. 🌶️ To check if the snake collides with itself is a bit challenging. You may skip this of you want. However, if you want to try that, you need to iterate pixels over snake.body and check if the head is on any of the body pixels.
 
-**Number list in the post will look like:**
-1. Item 1
-2. Item 2
-3. Item 3
-4. Item 4
-5. Item 5
 
-**Images in the post will look like:**<br>
-![Test Image](/WhatATheme/assets/images/1280x720%20Placeholder.png)
-
-**Normal text in the post will look like**<br>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id finibus nisl. Etiam in hendrerit est. Nulla non erat ac lectus interdum lobortis. Vestibulum at mi ex. Mauris nisl mi, venenatis et feugiat nec, finibus porttitor velit. Suspendisse tincidunt lobortis leo, quis tristique tellus iaculis quis. Donec eleifend pulvinar gravida. Proin non lorem eros. Donec sit amet finibus ex, eget vestibulum nunc. Ut ut enim id purus porttitor tristique. Vivamus tincidunt eleifend hendrerit. Proin metus felis, ultrices vel dui in, porta dapibus dui. Sed sagittis ex vitae dui tristique dignissim. Cras vel leo ipsum.
-
-Aenean ac neque et risus mattis accumsan. Sed ac tellus molestie, lacinia ante sit amet, convallis felis. Maecenas aliquet lectus nec euismod auctor. Donec finibus pellentesque tortor, ac efficitur metus suscipit non. Proin diam orci, blandit quis malesuada ac, efficitur a nisl. Mauris eleifend consequat blandit. Sed egestas quam et orci gravida, non euismod metus scelerisque. Curabitur venenatis pellentesque erat commodo pharetra. Fusce id ante nec ipsum fringilla auctor. In justo quam, feugiat placerat eleifend dapibus, luctus et quam. Fusce facilisis erat ut odio convallis viverra et id mauris. Sed vehicula tempus consectetur. Aliquam pharetra, purus non egestas tristique, tellus massa fringilla est, id sagittis tellus urna non mauris. Suspendisse fringilla, velit nec blandit facilisis, ligula ante imperdiet est, et placerat magna sem quis tortor.
-
-Vestibulum vitae fermentum velit, rhoncus egestas orci. Nulla at purus ut orci posuere vulputate. In eget leo diam. In congue in diam nec elementum. Suspendisse fringilla ante nulla, eu tristique orci ultrices eget. Aenean non lorem tellus. Vestibulum tempor metus sit amet tellus feugiat, sit amet consequat lacus ultricies.
-
-Donec imperdiet, lectus eget congue cursus, dolor enim finibus risus, ut molestie lorem tellus non tortor. Donec quam nibh, molestie in dapibus et, efficitur non tortor. Morbi orci tellus, mollis vel mi vitae, auctor lobortis erat. Ut gravida velit eget ligula lacinia, id rhoncus tellus gravida. Maecenas laoreet rutrum consequat. Suspendisse sed nibh dui. Curabitur dictum euismod mollis. Sed egestas libero libero, eu accumsan augue placerat non. Nunc id condimentum orci. Mauris vitae sollicitudin quam.
-
-**Giphy Gifs will look like:**<br>
-<iframe src="https://giphy.com/embed/ZqlvCTNHpqrio" width="480" height="259" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/laughing-despicable-me-minions-ZqlvCTNHpqrio">via GIPHY</a></p>
-
-**YouTUbe Videos will look like:**<br>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jTPXwbDtIpA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
