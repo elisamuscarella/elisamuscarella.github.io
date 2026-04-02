@@ -8,16 +8,18 @@ layout: compress
 
 <body>
   {% include navbar.html %}
-  {% include showcase.html %}
-  {% include about.html %}
-  {% include contact.html %}
-  <!--Footer begins here-->
+
+  <!-- Content Section -->
+  <main>
+    {{ content }}
+  </main>
+
   {% include footer.html %}
 </body>
 <script>
   var navItems = document.getElementsByClassName('navbar-item');
   var heroes = document.getElementsByClassName('hero');
-  const viewOffset = 200; 
+  const viewOffset = 200;
 
   window.addEventListener("scroll", function (event) {
     var scroll = this.scrollY;
