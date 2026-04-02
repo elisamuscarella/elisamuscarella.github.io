@@ -4,7 +4,7 @@ markdown: kramdown
 # URL of the Site
 url: "https://KimJunyoung77.github.io"
 # Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
-baseurl: ""
+baseurl: "https://thedevslot.github.io/WhatATheme/"
 
 # Title of the Site
 title: Jay Portpolio
