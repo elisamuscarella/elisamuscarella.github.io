@@ -57,8 +57,7 @@ sass:
 
 # Build settings
 plugins:
-  - jekyll-admin
-  - jekyll-feed
+- jekyll-feed
 
 # Permalink
 permalink: "blog/:title"
