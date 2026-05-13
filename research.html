@@ -1,0 +1,434 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research — Elisa Muscarella</title>
+  <meta name="description" content="Research by Elisa Muscarella — political economy, public economics, gender."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #4a7c59;
+      --sage-light: #eaf3ec;
+      --sage-mid: #b8d4be;
+      --sage-dark: #2d5c3a;
+      --bg: #faf9f6;
+      --bg-secondary: #f2f0eb;
+      --text: #1c1c1a;
+      --text-secondary: #5a5854;
+      --border: #dddad4;
+      --card-bg: #ffffff;
+      --toggle-bg: #e8e5df;
+    }
+    [data-theme="dark"] {
+      --bg: #141412;
+      --bg-secondary: #1e1d1a;
+      --text: #f0ede6;
+      --text-secondary: #9c9890;
+      --border: #2e2c28;
+      --card-bg: #1e1d1a;
+      --toggle-bg: #2e2c28;
+      --sage-light: #1a2e1e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--sage); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 720px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 15px; font-weight: 500;
+      color: var(--sage-dark);
+    }
+    [data-theme="dark"] .nav-name { color: var(--sage-mid); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-secondary);
+      letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--sage); text-decoration: none; }
+    .toggle {
+      width: 36px; height: 20px;
+      background: var(--toggle-bg);
+      border-radius: 20px; cursor: pointer;
+      border: none; position: relative;
+      transition: background 0.3s; flex-shrink: 0;
+    }
+    .toggle::after {
+      content: ''; width: 14px; height: 14px;
+      background: var(--sage); border-radius: 50%;
+      position: absolute; top: 3px; left: 3px;
+      transition: transform 0.3s;
+    }
+    [data-theme="dark"] .toggle::after { transform: translateX(16px); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header h1 {
+      font-family: 'Lora', serif;
+      font-size: 30px; font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* SECTION */
+    .research-section { padding: 36px 0; border-bottom: 1px solid var(--border); }
+    .research-section:last-child { border-bottom: none; }
+    .sec-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 24px;
+    }
+
+    /* PAPER CARD */
+    .paper {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .paper:hover { border-color: var(--sage-mid); }
+    .paper-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 12px;
+      margin-bottom: 6px;
+    }
+    .paper-title {
+      font-family: 'Lora', serif;
+      font-size: 16px; font-weight: 500;
+      color: var(--text); line-height: 1.4;
+    }
+    .paper-badge {
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .badge-wip { background: #faeeda; color: #633806; }
+    .badge-soon { background: var(--sage-light); color: var(--sage-dark); }
+    .badge-data { background: #e8eaf6; color: #283593; }
+    .badge-preregistered { background: #f3e5f5; color: #6a1b9a; }
+    [data-theme="dark"] .badge-wip { background: #3d2400; color: #f5c07a; }
+    [data-theme="dark"] .badge-soon { background: #1a2e1e; color: #7dba8f; }
+    [data-theme="dark"] .badge-data { background: #1a1c3a; color: #9fa8da; }
+    [data-theme="dark"] .badge-preregistered { background: #2d1a30; color: #ce93d8; }
+
+    .paper-authors {
+      font-size: 13px; color: var(--text-secondary);
+      margin-bottom: 10px; line-height: 1.5;
+    }
+    .paper-authors a { color: var(--text-secondary); border-bottom: 1px dotted var(--sage-mid); }
+    .paper-authors a:hover { color: var(--sage); text-decoration: none; }
+
+    .paper-meta {
+      font-size: 12px; color: var(--text-secondary);
+      margin-bottom: 10px; font-style: italic;
+    }
+    .paper-meta a { color: var(--sage); font-style: normal; }
+
+    /* ABSTRACT TOGGLE */
+    .abstract-toggle {
+      background: none; border: none; cursor: pointer;
+      font-size: 13px; color: var(--sage);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500; padding: 0;
+      display: flex; align-items: center; gap: 5px;
+      margin-bottom: 0; transition: color 0.2s;
+    }
+    .abstract-toggle:hover { color: var(--sage-dark); }
+    .abstract-toggle .arrow {
+      display: inline-block; transition: transform 0.25s;
+      font-size: 10px;
+    }
+    .abstract-toggle.open .arrow { transform: rotate(90deg); }
+    .abstract-body {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: var(--sage-light);
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      border-left: 3px solid var(--sage-mid);
+    }
+    .abstract-body.open { display: block; }
+
+    /* CHIPS */
+    .paper-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .chip {
+      font-size: 11px; padding: 3px 10px;
+      border: 1px solid var(--sage-mid);
+      border-radius: 20px; color: var(--sage-dark);
+      background: var(--sage-light);
+    }
+    [data-theme="dark"] .chip { color: var(--sage-mid); }
+
+    /* AWARD */
+    .award {
+      font-size: 12px; color: var(--sage);
+      font-weight: 500; margin-top: 8px;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    /* PRESENTATIONS */
+    .presentations { margin-top: 10px; font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+    .presentations strong { color: var(--text); font-weight: 500; }
+    .presentations a { color: var(--sage); }
+    .next-pres { margin-top: 4px; font-size: 12px; color: var(--sage); font-weight: 500; }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 0;
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 560px) {
+      .paper-top { flex-direction: column; }
+      .nav-links a:not(.active) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="/">Elisa Muscarella</a>
+    <div class="nav-links">
+      <a href="/">Bio</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/teaching">Teaching</a>
+      <a href="/activities">Activities</a>
+      <a href="/assets/files/cv.pdf" target="_blank">CV</a>
+      <button class="toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Research</h1>
+    <p>My work sits at the intersection of political economy and public economics, with a focus on gender. I study how political institutions and public policy shape — and are shaped by — gender dynamics.</p>
+  </div>
+
+  <!-- ===================== WORK IN PROGRESS ===================== -->
+  <div class="research-section">
+    <div class="sec-label">Work in progress</div>
+
+    <!-- PAPER 1 -->
+    <div class="paper">
+      <div class="paper-top">
+        <div class="paper-title">Masculinity Norms and the Far-Right Backlash Against Female Leadership</div>
+        <span class="paper-badge badge-soon">Draft available soon</span>
+      </div>
+      <div class="paper-authors">
+        with
+        <a href="#">D. Cipullo</a>,
+        <a href="#">Federico Franzoni</a>,
+        <a href="#">M. Gamalerio</a>,
+        and <a href="#">F. Trombetta</a>
+      </div>
+      <button class="abstract-toggle" onclick="toggleAbstract(this)">
+        <span class="arrow">▶</span> Abstract
+      </button>
+      <div class="abstract-body">
+        Add your abstract here. You can paste it directly and it will be hidden until the reader clicks "Abstract".
+      </div>
+      <div class="presentations">
+        <strong>Presented at:</strong>
+        <a href="#" target="_blank">Conference Name (City, 2025)</a>,
+        <a href="#" target="_blank">Conference Name (City, 2025)</a>
+      </div>
+      <div class="next-pres">
+        📅 Next: <a href="#" target="_blank">Conference Name (City, Month 2026)</a>
+      </div>
+      <div class="paper-chips">
+        <span class="chip">Political economy</span>
+        <span class="chip">Gender</span>
+        <span class="chip">Far-right</span>
+      </div>
+    </div>
+
+    <!-- PAPER 2 -->
+    <div class="paper">
+      <div class="paper-top">
+        <div class="paper-title">Does Information About the Parenthood Penalty Influence Support for Gender Equality?</div>
+        <span class="paper-badge badge-preregistered">Pre-registered</span>
+      </div>
+      <div class="paper-authors">
+        with
+        <a href="#">D. Cipullo</a>,
+        <a href="#">M. Gamalerio</a>,
+        and <a href="#">F. Trombetta</a>
+      </div>
+      <div class="paper-meta">
+        Pre-registration: Gamalerio, Matteo and Elisa Muscarella. 2026.
+        <a href="https://doi.org/10.1257/rct.17657-1.0" target="_blank">AEA RCT Registry, January 22.</a>
+        · Data collection completed
+      </div>
+      <button class="abstract-toggle" onclick="toggleAbstract(this)">
+        <span class="arrow">▶</span> Abstract
+      </button>
+      <div class="abstract-body">
+        Add your abstract here.
+      </div>
+      <div class="presentations">
+        <strong>Presented at:</strong>
+        <a href="#" target="_blank">Conference Name (City, 2025)</a>,
+        <a href="#" target="_blank">Conference Name (City, 2025)</a>
+      </div>
+      <div class="next-pres">
+        📅 Next: <a href="#" target="_blank">Conference Name (City, Month 2026)</a>
+      </div>
+      <div class="paper-chips">
+        <span class="chip">Public economics</span>
+        <span class="chip">Gender equality</span>
+        <span class="chip">Information</span>
+      </div>
+    </div>
+
+    <!-- PAPER 3 -->
+    <div class="paper">
+      <div class="paper-top">
+        <div class="paper-title">The Apathy Myth: Youth, Politics and Discrimination</div>
+        <span class="paper-badge badge-data">Data collection in progress</span>
+      </div>
+      <div class="paper-authors">
+        with <a href="#">Guillem Riambau</a>
+      </div>
+      <div class="paper-meta">
+        Pre-registration: Muscarella, Elisa and Guillem Riambau. 2026.
+        <a href="https://doi.org/10.1257/rct.18052-2.0" target="_blank">AEA RCT Registry, May 06.</a>
+      </div>
+      <button class="abstract-toggle" onclick="toggleAbstract(this)">
+        <span class="arrow">▶</span> Abstract
+      </button>
+      <div class="abstract-body">
+        Add your abstract here.
+      </div>
+      <div class="award">🏆 Winner of the 2024 LEAP Research Grant</div>
+      <div class="presentations">
+        <strong>Presented at:</strong>
+        <a href="#" target="_blank">Conference Name (City, 2025)</a>,
+        <a href="#" target="_blank">Conference Name (City, 2025)</a>
+      </div>
+      <div class="next-pres">
+        📅 Next: <a href="#" target="_blank">Conference Name (City, Month 2026)</a>
+      </div>
+      <div class="paper-chips">
+        <span class="chip">Political economy</span>
+        <span class="chip">Youth</span>
+        <span class="chip">Discrimination</span>
+      </div>
+    </div>
+
+  </div>
+  <!-- ===================== END WORK IN PROGRESS ===================== -->
+
+
+  <!-- ===================== WORKING PAPERS — uncomment when ready =====================
+  <div class="research-section">
+    <div class="sec-label">Working papers</div>
+
+    <div class="paper">
+      <div class="paper-top">
+        <div class="paper-title">Your working paper title here</div>
+        <span class="paper-badge badge-wip">Working paper</span>
+      </div>
+      <div class="paper-authors">with <a href="#">Co-author Name</a></div>
+      <div class="paper-meta">Available on <a href="#">SSRN</a> · Under review at Journal Name</div>
+      <button class="abstract-toggle" onclick="toggleAbstract(this)">
+        <span class="arrow">▶</span> Abstract
+      </button>
+      <div class="abstract-body">
+        Your abstract here.
+      </div>
+    </div>
+
+  </div>
+  ===================== END WORKING PAPERS ===================== -->
+
+
+  <!-- ===================== PUBLICATIONS — uncomment when ready =====================
+  <div class="research-section">
+    <div class="sec-label">Publications</div>
+
+    <div class="paper">
+      <div class="paper-top">
+        <div class="paper-title">Your published paper title here</div>
+        <span class="paper-badge badge-soon">Published</span>
+      </div>
+      <div class="paper-authors">with <a href="#">Co-author Name</a></div>
+      <div class="paper-meta">Journal Name, Vol. X, 2025. <a href="#">PDF</a> · <a href="#">Journal link</a></div>
+      <button class="abstract-toggle" onclick="toggleAbstract(this)">
+        <span class="arrow">▶</span> Abstract
+      </button>
+      <div class="abstract-body">
+        Your abstract here.
+      </div>
+    </div>
+
+  </div>
+  ===================== END PUBLICATIONS ===================== -->
+
+</div>
+
+<div class="container">
+  <footer>
+    <span>Elisa Muscarella · University of Barcelona</span>
+    <span>2026</span>
+  </footer>
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', html.getAttribute('data-theme'));
+  }
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+  function toggleAbstract(btn) {
+    btn.classList.toggle('open');
+    const body = btn.nextElementSibling;
+    body.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
