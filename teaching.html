@@ -1,0 +1,276 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teaching — Elisa Muscarella</title>
+  <meta name="description" content="Teaching by Elisa Muscarella — University of Barcelona."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #4a7c59;
+      --sage-light: #eaf3ec;
+      --sage-mid: #b8d4be;
+      --sage-dark: #2d5c3a;
+      --bg: #faf9f6;
+      --bg-secondary: #f2f0eb;
+      --text: #1c1c1a;
+      --text-secondary: #5a5854;
+      --border: #dddad4;
+      --card-bg: #ffffff;
+      --toggle-bg: #e8e5df;
+      --gold: #b07d2a;
+      --gold-light: #fdf6e3;
+    }
+    [data-theme="dark"] {
+      --bg: #141412;
+      --bg-secondary: #1e1d1a;
+      --text: #f0ede6;
+      --text-secondary: #9c9890;
+      --border: #2e2c28;
+      --card-bg: #1e1d1a;
+      --toggle-bg: #2e2c28;
+      --sage-light: #1a2e1e;
+      --gold-light: #2a2010;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg); color: var(--text);
+      font-size: 15px; line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--sage); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0; transition: background 0.3s;
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 720px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 15px; font-weight: 500;
+      color: var(--sage-dark);
+    }
+    [data-theme="dark"] .nav-name { color: var(--sage-mid); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-secondary);
+      letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--sage); text-decoration: none; }
+    .toggle {
+      width: 36px; height: 20px;
+      background: var(--toggle-bg);
+      border-radius: 20px; cursor: pointer;
+      border: none; position: relative;
+      transition: background 0.3s; flex-shrink: 0;
+    }
+    .toggle::after {
+      content: ''; width: 14px; height: 14px;
+      background: var(--sage); border-radius: 50%;
+      position: absolute; top: 3px; left: 3px;
+      transition: transform 0.3s;
+    }
+    [data-theme="dark"] .toggle::after { transform: translateX(16px); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
+    .page-header h1 {
+      font-family: 'Lora', serif;
+      font-size: 30px; font-weight: 500; margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* TEACHING SECTION */
+    .teaching-section { padding: 36px 0; border-bottom: 1px solid var(--border); }
+    .teaching-section:last-child { border-bottom: none; }
+    .sec-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 24px;
+    }
+
+    /* COURSE CARD */
+    .course {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .course:hover { border-color: var(--sage-mid); }
+    .course-title {
+      font-family: 'Lora', serif;
+      font-size: 18px; font-weight: 500;
+      color: var(--text); margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .course-title a { color: var(--text); }
+    .course-title a:hover { color: var(--sage); text-decoration: none; }
+    .course-desc {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 14px;
+    }
+    .course-meta {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      font-size: 12px; color: var(--text-secondary);
+      margin-bottom: 16px; align-items: center;
+    }
+    .course-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* YEAR ROWS */
+    .year-rows { display: flex; flex-direction: column; gap: 8px; }
+    .year-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .year-row-left { display: flex; align-items: center; gap: 10px; }
+    .year-label { font-weight: 500; color: var(--text); min-width: 36px; }
+    .eval {
+      font-weight: 600; color: var(--gold);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .eval-pending { color: var(--text-secondary); font-style: italic; font-weight: 400; }
+    .year-row-right { font-size: 12px; color: var(--text-secondary); text-align: right; }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 0;
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a:not(.active) { display: none; }
+      .year-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .course-meta { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="/">Elisa Muscarella</a>
+    <div class="nav-links">
+      <a href="/">Bio</a>
+      <a href="/research">Research</a>
+      <a href="/teaching" class="active">Teaching</a>
+      <a href="/activities">Activities</a>
+      <a href="/assets/files/cv.pdf" target="_blank">CV</a>
+      <button class="toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Teaching</h1>
+    <p>I teach and assist at the undergraduate level at the University of Barcelona, with a focus on public economics and political economy.</p>
+  </div>
+
+  <!-- ===================== INSTRUCTOR ===================== -->
+  <div class="teaching-section">
+    <div class="sec-label">Instructor</div>
+
+    <div class="course">
+      <div class="course-title">
+        <a href="https://www.ub.edu/pladocent/?cod_giga=366717&curs=2025" target="_blank">Public Finance</a>
+      </div>
+      <div class="course-desc">
+        An undergraduate course covering the economic role of the public sector, taxation, public expenditure, and fiscal policy. Students engage with both theoretical foundations and empirical evidence on public finance.
+      </div>
+      <div class="course-meta">
+        <span>🏛 University of Barcelona</span>
+        <span>📘 6 ECTS · BA Economics</span>
+        <span>👤 Instructor</span>
+      </div>
+      <div class="year-rows">
+        <div class="year-row">
+          <div class="year-row-left">
+            <span class="year-label">2025–26</span>
+            <span class="eval-pending">Teaching evaluation: pending</span>
+          </div>
+          <div class="year-row-right">4 lectures (2h) · 1 tutorial (2h) · exam</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- ===================== END INSTRUCTOR ===================== -->
+
+
+  <!-- ===================== TEACHING ASSISTANT — uncomment when ready =====================
+  <div class="teaching-section">
+    <div class="sec-label">Teaching assistant</div>
+
+    <div class="course">
+      <div class="course-title">
+        <a href="#" target="_blank">Course Name Here</a>
+      </div>
+      <div class="course-desc">
+        Brief description of the course.
+      </div>
+      <div class="course-meta">
+        <span>🏛 University of Barcelona</span>
+        <span>📘 6 ECTS · BA Economics</span>
+        <span>👥 Teaching Assistant</span>
+      </div>
+      <div class="year-rows">
+        <div class="year-row">
+          <div class="year-row-left">
+            <span class="year-label">2025–26</span>
+            <span class="eval-pending">Teaching evaluation: pending</span>
+          </div>
+          <div class="year-row-right">X lectures · X tutorials</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  ===================== END TEACHING ASSISTANT ===================== -->
+
+</div>
+
+<div class="container">
+  <footer>
+    <span>Elisa Muscarella · University of Barcelona</span>
+    <span>2026</span>
+  </footer>
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', html.getAttribute('data-theme'));
+  }
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+</script>
+
+</body>
+</html>
