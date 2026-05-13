@@ -1,0 +1,278 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activities — Elisa Muscarella</title>
+  <meta name="description" content="Activities and outreach by Elisa Muscarella — University of Barcelona."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --sage: #4a7c59;
+      --sage-light: #eaf3ec;
+      --sage-mid: #b8d4be;
+      --sage-dark: #2d5c3a;
+      --bg: #faf9f6;
+      --bg-secondary: #f2f0eb;
+      --text: #1c1c1a;
+      --text-secondary: #5a5854;
+      --border: #dddad4;
+      --card-bg: #ffffff;
+      --toggle-bg: #e8e5df;
+      --gold: #b07d2a;
+    }
+    [data-theme="dark"] {
+      --bg: #141412;
+      --bg-secondary: #1e1d1a;
+      --text: #f0ede6;
+      --text-secondary: #9c9890;
+      --border: #2e2c28;
+      --card-bg: #1e1d1a;
+      --toggle-bg: #2e2c28;
+      --sage-light: #1a2e1e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg); color: var(--text);
+      font-size: 15px; line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--sage); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0; transition: background 0.3s;
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 720px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 15px; font-weight: 500; color: var(--sage-dark);
+    }
+    [data-theme="dark"] .nav-name { color: var(--sage-mid); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-secondary);
+      letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--sage); text-decoration: none; }
+    .toggle {
+      width: 36px; height: 20px; background: var(--toggle-bg);
+      border-radius: 20px; cursor: pointer; border: none;
+      position: relative; transition: background 0.3s; flex-shrink: 0;
+    }
+    .toggle::after {
+      content: ''; width: 14px; height: 14px;
+      background: var(--sage); border-radius: 50%;
+      position: absolute; top: 3px; left: 3px; transition: transform 0.3s;
+    }
+    [data-theme="dark"] .toggle::after { transform: translateX(16px); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
+    .page-header h1 {
+      font-family: 'Lora', serif;
+      font-size: 30px; font-weight: 500; margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.7; max-width: 560px;
+    }
+
+    /* SECTION */
+    .activities-section { padding: 36px 0; border-bottom: 1px solid var(--border); }
+    .activities-section:last-child { border-bottom: none; }
+    .sec-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 24px;
+    }
+
+    /* HORIZONTAL CARDS */
+    .cards { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 16px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--sage-mid); }
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 6px;
+      background: var(--sage-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .card-icon i { font-size: 20px; color: var(--sage); }
+    .card-body { display: flex; flex-direction: column; gap: 6px; }
+    .card-title {
+      font-family: 'Lora', serif;
+      font-size: 16px; font-weight: 500;
+      color: var(--text); line-height: 1.3;
+    }
+    .card-subtitle { font-size: 12px; color: var(--sage); font-weight: 500; }
+    .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+    .card-meta {
+      font-size: 12px; color: var(--text-secondary);
+      line-height: 1.6; padding-top: 8px;
+      border-top: 1px solid var(--border); margin-top: 4px;
+    }
+    .card-meta strong { color: var(--text); font-weight: 500; }
+    .card-link {
+      font-size: 12px; font-weight: 500; color: var(--sage);
+      display: inline-flex; align-items: center; gap: 4px; margin-top: 6px;
+    }
+    .card-link:hover { text-decoration: none; color: var(--sage-dark); }
+    .award {
+      font-size: 12px; font-weight: 500; color: var(--gold);
+      display: flex; align-items: center; gap: 4px; margin-top: 4px;
+    }
+
+    /* BADGES */
+    .badge {
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0; height: fit-content;
+    }
+    .badge-ran { background: #eaf3ec; color: #2d5c3a; }
+    .badge-contrib { background: #faeeda; color: #633806; }
+    .badge-future { background: #f3e5f5; color: #6a1b9a; }
+    .badge-coord { background: #e8eaf6; color: #283593; }
+    [data-theme="dark"] .badge-ran { background: #1a2e1e; color: #7dba8f; }
+    [data-theme="dark"] .badge-contrib { background: #3d2400; color: #f5c07a; }
+    [data-theme="dark"] .badge-future { background: #2d1a30; color: #ce93d8; }
+    [data-theme="dark"] .badge-coord { background: #1a1c3a; color: #9fa8da; }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 0;
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a:not(.active) { display: none; }
+      .card { grid-template-columns: 36px 1fr; }
+      .badge { grid-column: 2; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="/">Elisa Muscarella</a>
+    <div class="nav-links">
+      <a href="/">Bio</a>
+      <a href="/research">Research</a>
+      <a href="/teaching">Teaching</a>
+      <a href="/activities" class="active">Activities</a>
+      <a href="/assets/files/cv.pdf" target="_blank">CV</a>
+      <button class="toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Activities</h1>
+    <p>Alongside my research and teaching, I am involved in initiatives aimed at supporting the PhD community and fostering collaboration across institutions.</p>
+  </div>
+
+  <div class="activities-section">
+    <div class="sec-label">PhD community & outreach</div>
+    <div class="cards">
+
+      <!-- COFFEE TALK -->
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-coffee" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Research Ideas Coffee Talk</div>
+          <div class="card-desc">Biweekly sessions for PhD students to discuss newly-formed research ideas in a safe and friendly environment before starting a project. Occasional special sessions on data sharing and idea generation.</div>
+          <div class="card-meta"><strong>Initiated by PhD colleagues</strong> · Supported by the PhD in Economics Program, University of Barcelona.</div>
+          <a class="card-link" href="https://www.linkedin.com/posts/universitat-de-barcelona-school-of-economics_econphd-phdcoffees-economics-activity-7449804643037134848-653t" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i> See recent event post</a>
+        </div>
+        <span class="badge badge-ran">Organiser · AY 2025–26</span>
+      </div>
+
+      <!-- BESTEPS -->
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">BESTEPS</div>
+          <div class="card-subtitle">Barcelona Essential Skills Training for Economics PhD Students</div>
+          <div class="card-desc">A series of lectures by leading European experts covering key research phases — from identifying feasible projects to communicating findings and producing final academic outputs. Designed for early-stage economists.</div>
+          <div class="card-meta">I contributed to the organisation of this initiative.</div>
+        </div>
+        <span class="badge badge-contrib">Contributor</span>
+      </div>
+
+      <!-- BARCELONA APPLIED PHD SEMINAR -->
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Barcelona Applied PhD Seminar</div>
+          <div class="card-desc">Monthly seminar in which PhD students from UPF and UAB present their work-in-progress to peers and faculty, fostering cross-institutional collaboration in applied economics.</div>
+          <div class="card-meta"><strong>Initiative by PhD colleagues</strong> · I will co-organise the AY 2026–27 series.</div>
+          <div class="award"><i class="ti ti-trophy" aria-hidden="true"></i> IPERC Seed Grant recipient</div>
+        </div>
+        <span class="badge badge-future">Organiser · AY 2026–27</span>
+      </div>
+
+      <!-- JOB MARKET MARKETING — uncomment when ready
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div>
+        <div class="card-body">
+          <div class="card-title">Job Market Marketing</div>
+          <div class="card-desc">A comprehensive plan to promote PhD candidates on the academic job market — coordinating with the marketing team, gathering and preparing candidate materials, and managing the external communication of the Institut d'Economia de Barcelona.</div>
+          <div class="card-meta"><strong>Institut d'Economia de Barcelona (IEB)</strong></div>
+        </div>
+        <span class="badge badge-coord">Coordinator</span>
+      </div>
+      -->
+
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+  <footer>
+    <span>Elisa Muscarella · University of Barcelona</span>
+    <span>2026</span>
+  </footer>
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', html.getAttribute('data-theme'));
+  }
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+</script>
+
+</body>
+</html>
