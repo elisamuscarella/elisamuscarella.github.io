@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elisa Muscarella — Economics</title>
-<meta name="description" content="PhD Candidate in Economics at the University of Barcelona. Political economy and public economics with a gender perspective."/>
-<meta name="google-site-verification" content="6Cqyc6FbS3ti-B75LFvGCFjSqbCx9W1Ldpzs84IkpNw" />
+  <meta name="description" content="PhD Candidate in Economics at the University of Barcelona. Political economy and public economics with a gender perspective."/>
+  <meta name="google-site-verification" content="6Cqyc6FbS3ti-B75LFvGCFjSqbCx9W1Ldpzs84IkpNw" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -38,13 +38,13 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
     a { color: var(--sage); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
 
     /* NAV */
     nav {
@@ -56,11 +56,11 @@
     }
     .nav-inner {
       display: flex; justify-content: space-between; align-items: center;
-      max-width: 720px; margin: 0 auto; padding: 0 24px;
+      max-width: 900px; margin: 0 auto; padding: 0 24px;
     }
     .nav-name {
       font-family: 'Lora', serif;
-      font-size: 15px; font-weight: 500;
+      font-size: 16px; font-weight: 500;
       color: var(--sage-dark); letter-spacing: 0.01em;
     }
     [data-theme="dark"] .nav-name { color: var(--sage-mid); }
@@ -86,35 +86,35 @@
     .hero {
       padding: 56px 0 48px;
       display: grid;
-      grid-template-columns: 1fr 128px;
-      gap: 40px; align-items: start;
+      grid-template-columns: 1fr 160px;
+      gap: 48px; align-items: start;
       border-bottom: 1px solid var(--border);
     }
     .hero h1 {
       font-family: 'Lora', serif;
-      font-size: 36px; font-weight: 500;
-      line-height: 1.1; margin-bottom: 6px;
+      font-size: 46px; font-weight: 500;
+      line-height: 1.1; margin-bottom: 8px;
       color: var(--text);
     }
     .hero-role {
-      font-size: 13px; color: var(--sage);
+      font-size: 14px; color: var(--sage);
       font-weight: 500; letter-spacing: 0.04em;
-      text-transform: uppercase; margin-bottom: 20px;
+      text-transform: uppercase; margin-bottom: 22px;
     }
     .hero-bio {
-      font-size: 15px; color: var(--text-secondary);
-      line-height: 1.75; margin-bottom: 22px;
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 24px;
     }
     .hero-bio a { color: var(--sage); font-weight: 500; }
     .photo {
-      width: 128px; height: 152px;
+      width: 160px; height: 190px;
       border-radius: 6px; object-fit: cover;
       border: 1px solid var(--border);
       background: var(--sage-light);
     }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
     .chip {
-      font-size: 12px; padding: 4px 12px;
+      font-size: 13px; padding: 4px 14px;
       border: 1px solid var(--sage-mid);
       border-radius: 20px; color: var(--sage-dark);
       background: var(--sage-light); font-weight: 400;
@@ -122,8 +122,8 @@
     [data-theme="dark"] .chip { color: var(--sage-mid); }
     .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
-      font-size: 13px; font-weight: 500;
-      padding: 8px 18px; border-radius: 5px;
+      font-size: 14px; font-weight: 500;
+      padding: 9px 20px; border-radius: 5px;
       cursor: pointer; transition: all 0.2s;
       display: inline-flex; align-items: center; gap: 6px;
       font-family: 'DM Sans', sans-serif;
@@ -142,19 +142,9 @@
       color: var(--sage); margin-bottom: 20px;
     }
 
-    /* NEWS */
-    .news-row {
-      display: flex; gap: 16px; padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px; align-items: baseline;
-    }
-    .news-row:last-child { border-bottom: none; }
-    .ndate { min-width: 80px; color: var(--sage); font-weight: 500; font-size: 13px; }
-    .ntext { color: var(--text-secondary); line-height: 1.55; }
-
     /* RESEARCH PREVIEW */
     .research-note {
-      font-size: 14px; color: var(--text-secondary);
+      font-size: 15px; color: var(--text-secondary);
       line-height: 1.7; margin-bottom: 20px;
     }
 
@@ -171,7 +161,7 @@
     /* SOCIAL LINKS */
     .socials { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
     .social-link {
-      font-size: 13px; color: var(--text-secondary);
+      font-size: 14px; color: var(--text-secondary);
       display: flex; align-items: center; gap: 5px;
       transition: color 0.2s;
     }
@@ -185,11 +175,27 @@
       border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 560px) {
-      .hero { grid-template-columns: 1fr; }
-      .photo { width: 100px; height: 120px; }
-      .nav-links a:not(.active) { display: none; }
-      .hero h1 { font-size: 28px; }
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      .hero > div { order: 2; }
+      .photo {
+        order: 1;
+        width: 120px; height: 144px;
+        margin-bottom: 8px;
+      }
+      .hero h1 { font-size: 32px; }
+      .nav-links { gap: 14px; }
+      .nav-links a {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links a:not(.active):not(:last-child) { display: none; }
     }
   </style>
 </head>
