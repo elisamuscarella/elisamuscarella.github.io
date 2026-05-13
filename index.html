@@ -1,3 +1,354 @@
 ---
-layout: default
+layout: null
 ---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elisa Muscarella — Economics</title>
+  <meta name="description" content="PhD Candidate in Economics at the University of Barcelona. Political economy and public economics with a gender perspective."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #4a7c59;
+      --sage-light: #eaf3ec;
+      --sage-mid: #b8d4be;
+      --sage-dark: #2d5c3a;
+      --bg: #faf9f6;
+      --bg-secondary: #f2f0eb;
+      --text: #1c1c1a;
+      --text-secondary: #5a5854;
+      --border: #dddad4;
+      --card-bg: #ffffff;
+      --toggle-bg: #e8e5df;
+    }
+    [data-theme="dark"] {
+      --bg: #141412;
+      --bg-secondary: #1e1d1a;
+      --text: #f0ede6;
+      --text-secondary: #9c9890;
+      --border: #2e2c28;
+      --card-bg: #1e1d1a;
+      --toggle-bg: #2e2c28;
+      --sage-light: #1a2e1e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--sage); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* LAYOUT */
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 720px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--sage-dark);
+      letter-spacing: 0.01em;
+    }
+    [data-theme="dark"] .nav-name { color: var(--sage-mid); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--sage); text-decoration: none; }
+
+    /* THEME TOGGLE */
+    .toggle {
+      width: 36px; height: 20px;
+      background: var(--toggle-bg);
+      border-radius: 20px;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      transition: background 0.3s;
+      flex-shrink: 0;
+    }
+    .toggle::after {
+      content: '';
+      width: 14px; height: 14px;
+      background: var(--sage);
+      border-radius: 50%;
+      position: absolute;
+      top: 3px; left: 3px;
+      transition: transform 0.3s;
+    }
+    [data-theme="dark"] .toggle::after { transform: translateX(16px); }
+
+    /* HERO */
+    .hero {
+      padding: 56px 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 128px;
+      gap: 40px;
+      align-items: start;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .hero-role {
+      font-size: 13px;
+      color: var(--sage);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-bio {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+    .hero-bio a { color: var(--sage); font-weight: 500; }
+    .photo {
+      width: 128px; height: 152px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: var(--sage-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--text-secondary); text-align: center;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .chip {
+      font-size: 12px; padding: 4px 12px;
+      border: 1px solid var(--sage-mid);
+      border-radius: 20px;
+      color: var(--sage-dark);
+      background: var(--sage-light);
+      font-weight: 400;
+    }
+    [data-theme="dark"] .chip { color: var(--sage-mid); }
+    .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      font-size: 13px; font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary {
+      background: var(--sage);
+      color: #fff;
+      border: 1px solid var(--sage);
+    }
+    .btn-primary:hover { background: var(--sage-dark); border-color: var(--sage-dark); text-decoration: none; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--sage);
+      border: 1px solid var(--sage-mid);
+    }
+    .btn-secondary:hover { border-color: var(--sage); text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+    .sec-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 20px;
+    }
+
+    /* NEWS */
+    .news-row {
+      display: flex; gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      align-items: baseline;
+    }
+    .news-row:last-child { border-bottom: none; }
+    .ndate { min-width: 80px; color: var(--sage); font-weight: 500; font-size: 13px; }
+    .ntext { color: var(--text-secondary); line-height: 1.55; }
+
+    /* RESEARCH PREVIEW */
+    .research-note {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* SOCIAL LINKS */
+    .socials { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+    .social-link {
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex; align-items: center; gap: 5px;
+      transition: color 0.2s;
+    }
+    .social-link:hover { color: var(--sage); text-decoration: none; }
+    .social-icon { width: 15px; height: 15px; opacity: 0.6; }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 560px) {
+      .hero { grid-template-columns: 1fr; }
+      .photo { width: 100px; height: 120px; }
+      .nav-links a:not(.active) { display: none; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Elisa Muscarella</span>
+    <div class="nav-links">
+      <a href="/" class="active">Bio</a>
+      <a href="/research">Research</a>
+      <a href="/teaching">Teaching</a>
+      <a href="/activities">Activities</a>
+      <a href="/assets/files/cv.pdf" target="_blank">CV</a>
+      <button class="toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div>
+      <h1>Elisa Muscarella</h1>
+      <div class="hero-role">PhD Candidate in Economics</div>
+      <p class="hero-bio">
+        I am a PhD candidate in Economics at the
+        <a href="https://www.ub.edu/school-economics/phd-student/elisa-muscarella/" target="_blank">University of Barcelona</a>
+        and an affiliated researcher at the
+        <a href="https://ieb.ub.edu/researcher/muscarella-elisa/" target="_blank">Institut d'Economia de Barcelona (IEB)</a>
+        and the
+        <a href="https://web.ub.edu/en/web/centre-recerca-institucions/members" target="_blank">Institutions, Politics and Economics Research Centre</a>.
+      </p>
+      <div class="chips">
+        <span class="chip">Political economy</span>
+        <span class="chip">Public economics</span>
+        <span class="chip">Gender</span>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-primary" href="/assets/files/cv.pdf" target="_blank">
+          ↓ Download CV
+        </a>
+        <a class="btn btn-secondary" href="mailto:elisa.muscarella@ub.edu">
+          ✉ Email me
+        </a>
+        <a class="btn btn-secondary" href="/research">
+          See my research →
+        </a>
+      </div>
+    </div>
+    <img class="photo" src="/assets/images/author.jpg" alt="Elisa Muscarella" onerror="this.style.display='none'"/>
+  </div>
+
+  <section>
+    <div class="sec-label">Recent news</div>
+    <div class="news-row">
+      <span class="ndate">2026</span>
+      <span class="ntext">Add your latest news here — a conference, a paper, an award.</span>
+    </div>
+    <div class="news-row">
+      <span class="ndate">2025</span>
+      <span class="ntext">Add another news item here.</span>
+    </div>
+    <div class="news-row">
+      <span class="ndate">2025</span>
+      <span class="ntext">And another one here.</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Research</div>
+    <p class="research-note">
+      My work sits at the intersection of political economy and public economics, with a particular focus on gender. I study how political institutions and public policy shape — and are shaped by — gender dynamics.
+    </p>
+    <a class="btn btn-secondary" href="/research">View all research →</a>
+  </section>
+
+  <section>
+    <div class="sec-label">Contact & profiles</div>
+    <div class="socials">
+      <a class="social-link" href="mailto:elisa.muscarella@ub.edu">
+        ✉ elisa.muscarella@ub.edu
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/elisa-muscarella/" target="_blank">
+        in LinkedIn
+      </a>
+      <a class="social-link" href="https://bsky.app/profile/elisamuscarella.bsky.social" target="_blank">
+        ☁ Bluesky
+      </a>
+      <a class="social-link" href="https://twitter.com/ElisaMuscarella" target="_blank">
+        𝕏 Twitter
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="container">
+  <footer>
+    <span>Elisa Muscarella · University of Barcelona</span>
+    <span>2026</span>
+  </footer>
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', html.getAttribute('data-theme'));
+  }
+  // Remember preference
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+</script>
+
+</body>
+</html>
